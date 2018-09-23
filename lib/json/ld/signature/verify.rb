@@ -39,16 +39,16 @@ module JSON::LD::SIGNATURE
       domain = signature['domain']
       nonce = signature['nonce']
       
-      uri = URI(creator)
-      response = Net::HTTP.get_response(uri)
+#      uri = URI(creator)
+#      response = Net::HTTP.get_response(uri)
       
-      case response.code
-        when "200"
-          publicKey = OpenSSL::PKey::RSA.new response.body
-        else
-          raise JsonLdSignatureError::UnreachableKey, 
-             "Key #{creator} could not be retrieved. Error: #{response.code}, #{response.message}"
-      end
+#      case response.code
+#        when "200"
+#          publicKey = OpenSSL::PKey::RSA.new response.body
+#        else
+#          raise JsonLdSignatureError::UnreachableKey, 
+#             "Key #{creator} could not be retrieved. Error: #{response.code}, #{response.message}"
+#      end
       
       normOpts = {
         'nonce' => nonce,

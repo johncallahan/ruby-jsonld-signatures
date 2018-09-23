@@ -14,6 +14,7 @@ describe JSON::LD::SIGNATURE::Sign do
     it "is possible to sign a basic document" do
       file = File.read(test_files['basic_jsonld'])
       signed = JSON::LD::SIGNATURE::Sign.sign file, { 'privateKeyPem' => @priv, 'creator' => 'http://example.com/foo/key/1'}
+      puts signed
     end
   end
   
