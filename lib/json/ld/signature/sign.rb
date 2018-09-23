@@ -18,12 +18,7 @@ module JSON::LD::SIGNATURE
       end
 
       # The privateKeyPem can be either a String or a parsed RSA key
-      privateKey = case options['privateKeyPem']
-      when String then OpenSSL::PKey::RSA.new options['privateKeyPem']
-      when OpenSSL::PKey::RSA then options['privateKeyPem']
-      else 
-        raise JsonLdSignatureError::InvalidKeyType, "key must be RSA Key or PEM String"
-      end
+      privateKey = Ed25519::SigningKey.new options['privateKey']
 
       unless privateKey.private?
         raise JsonLdSignatureError::WrongKeyType, "submitted key is a public key"
@@ -64,7 +59,7 @@ module JSON::LD::SIGNATURE
        # "@context" : "https://w3id.org/security/v1",
 
       sigobj = JSON.parse %({
-        "type" : "GraphSignature2012",
+        "type" : "Ed25519VerificationKey2018",
         "creator" : "#{creator}",
         "created" : "#{created}",
         "signatureValue" : "#{enc}"
