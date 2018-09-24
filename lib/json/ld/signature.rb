@@ -16,6 +16,7 @@ module JSON
         graph = RDF::Graph.new << JSON::LD::API.toRdf(jsonLDDoc)
         # TODO: Parameterize the normalization
         normalized = graph.dump(:normalize)
+	puts normalized
 
         digestdoc = ''
         digestdoc << opts['nonce'] unless opts['nonce'].nil?

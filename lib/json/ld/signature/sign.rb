@@ -44,7 +44,8 @@ module JSON::LD::SIGNATURE
       end
       
       jsonld.delete 'signature'
-      created = Time.now.iso8601
+#      created = Time.now.iso8601
+      created = "2018-03-15T00:00:00Z"
       nonce = options['nonce']
       domain = options['domain']
             
@@ -57,14 +58,14 @@ module JSON::LD::SIGNATURE
       
       normalizedGraph = JSON::LD::SIGNATURE::generateNormalizedGraph jsonld, normOpts
       
-      digest = OpenSSL::Digest::SHA256.new
+      digest = OpenSSL::Digest::SHA512.new
       signature = privateKey.sign digest, normalizedGraph
       enc = Base64.strict_encode64(signature)
       
        # "@context" : "https://w3id.org/security/v1",
 
       sigobj = JSON.parse %({
-        "type" : "GraphSignature2012",
+        "type" : "RsaSignature2017",
         "creator" : "#{creator}",
         "created" : "#{created}",
         "signatureValue" : "#{enc}"
