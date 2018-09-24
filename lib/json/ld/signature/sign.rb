@@ -55,7 +55,7 @@ module JSON::LD::SIGNATURE
       }
       
       normalizedGraph = JSON::LD::SIGNATURE::generateNormalizedGraph jsonld, normOpts
-      puts normalizedGraph
+#      puts normalizedGraph
       signature = privateKey.sign normalizedGraph
 
       enc = Base64.strict_encode64(signature)

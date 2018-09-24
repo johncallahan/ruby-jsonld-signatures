@@ -12,13 +12,13 @@ describe JSON::LD::SIGNATURE::Sign do
   
   context "test files" do
     test_files = {
-        "basic_jsonld" => "data/rop_media_type.jsonld"
+        "basic_canon" => "data/rop_media_type.canon"
     }
     
-    it "is possible to sign a basic document" do
-      file = File.read(test_files['basic_jsonld'])
-      signed = JSON::LD::SIGNATURE::Sign.sign file, { 'privateKey' => @priv, 'creator' => 'did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk#authn-key-1'}
-#      puts signed
+    it "is possible to sign a basic canon document" do
+      file = File.read(test_files['basic_canon'])
+      signatureValue = @priv.sign file
+#      puts Base64.strict_encode64(signatureValue)
     end
   end
   
