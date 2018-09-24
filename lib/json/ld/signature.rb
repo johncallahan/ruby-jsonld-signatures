@@ -17,12 +17,13 @@ module JSON
         # TODO: Parameterize the normalization
         normalized = graph.dump(:normalize)
 
-        digestdoc = ''
-        digestdoc << opts['nonce'] unless opts['nonce'].nil?
-        digestdoc << opts['created']
-        digestdoc << normalized
-        digestdoc << '@' + opts['domain'] unless opts['domain'].nil?
-        digestdoc
+#        digestdoc = ''
+#        digestdoc << opts['nonce'] unless opts['nonce'].nil?
+#        digestdoc << opts['created']
+#        digestdoc << normalized
+#        digestdoc << '@' + opts['domain'] unless opts['domain'].nil?
+#        digestdoc
+	 normalized
       end
       
       module_function :generateNormalizedGraph
