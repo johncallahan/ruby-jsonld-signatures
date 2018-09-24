@@ -13,16 +13,16 @@ module JSON::LD::SIGNATURE
       # TODO: Validate the resolvability of the URL?
 
       # We require a privateKeyPem in the options hash
-      if options['privateKeyPem'].nil?
-        raise JsonLdSignatureError::MissingKey, "options parameter must include privateKeyPem"
+      if options['privateKey'].nil?
+        raise JsonLdSignatureError::MissingKey, "options parameter must include privateKey"
       end
 
       # The privateKeyPem can be either a String or a parsed RSA key
-      privateKey = Ed25519::SigningKey.new options['privateKey']
+      privateKey = options['privateKey']
 
-      unless privateKey.private?
-        raise JsonLdSignatureError::WrongKeyType, "submitted key is a public key"
-      end
+#      unless privateKey.private?
+#        raise JsonLdSignatureError::WrongKeyType, "submitted key is a public key"
+#      end
 
       # Check the input, it should either be a String or a parsed JSON object
 
@@ -39,9 +39,13 @@ module JSON::LD::SIGNATURE
       end
       
       jsonld.delete 'signature'
-      created = Time.now.iso8601
-      nonce = options['nonce']
-      domain = options['domain']
+#      created = Time.now.iso8601
+      created = "2018-03-15T00:00:00Z"
+#     nonce = options['nonce']
+#      nonce = "3699b48f-a194-4415-8da3-b76269f63746"
+       nonce = nil
+#      domain = options['domain']
+      domain = nil
             
       normOpts = {
         'nonce' => nonce,
@@ -51,15 +55,15 @@ module JSON::LD::SIGNATURE
       }
       
       normalizedGraph = JSON::LD::SIGNATURE::generateNormalizedGraph jsonld, normOpts
-      
-      digest = OpenSSL::Digest::SHA256.new
-      signature = privateKey.sign digest, normalizedGraph
+      puts normalizedGraph
+      signature = privateKey.sign normalizedGraph
+
       enc = Base64.strict_encode64(signature)
       
        # "@context" : "https://w3id.org/security/v1",
 
       sigobj = JSON.parse %({
-        "type" : "Ed25519VerificationKey2018",
+        "type" : "Ed25519Signature2018",
         "creator" : "#{creator}",
         "created" : "#{created}",
         "signatureValue" : "#{enc}"

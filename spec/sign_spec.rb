@@ -1,9 +1,10 @@
+require 'ed25519'
 require 'spec_helper'
 
 describe JSON::LD::SIGNATURE::Sign do
   before :each do
-    @pub = OpenSSL::PKey::RSA.new File.read 'data/pub_key.pem'
-    @priv = OpenSSL::PKey::RSA.new File.read 'data/priv_key.pem'
+    @pub = Ed25519::VerifyKey.new ["ff1a646cc8b69fcb522aa1ed162bc2816878252a634384ce46f7507bfc92f68f"].pack('H*')
+    @priv = Ed25519::SigningKey.new ["f702a609f842057be24b5297e451662876f03b047d660362cd123f71d2a3b63"].pack('H*')
   end
   
   context "test files" do
@@ -13,7 +14,8 @@ describe JSON::LD::SIGNATURE::Sign do
     
     it "is possible to sign a basic document" do
       file = File.read(test_files['basic_jsonld'])
-      signed = JSON::LD::SIGNATURE::Sign.sign file, { 'privateKeyPem' => @priv, 'creator' => 'http://example.com/foo/key/1'}
+      signed = JSON::LD::SIGNATURE::Sign.sign file, { 'privateKey' => @priv, 'creator' => 'did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk#authn-key-1'}
+      puts signed
     end
   end
   

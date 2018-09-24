@@ -7,7 +7,8 @@ require 'openssl'
 require 'yaml'
 
 require 'webmock/rspec'
-WebMock.disable_net_connect!(allow_localhost: true)
+#WebMock.disable_net_connect!(allow_localhost: true)
+WebMock.disable!
 
 RSpec.configure do |config|
   pub = File.read("data/pub_key.pem")
