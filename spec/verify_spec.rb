@@ -1,3 +1,4 @@
+require 'json'
 require 'ed25519'
 require 'spec_helper'
 
@@ -31,14 +32,6 @@ describe JSON::LD::SIGNATURE::Verify do
         verified = JSON::LD::SIGNATURE::Verify.verify file, { 'publicKey' => @pub, 'creator' => 'did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk#authn-key-1'}
 #        puts "VERIFIED: #{verified}"
       end
-    end
 
-  #  describe "sign" do
-  #    it "is possible to sign a basic document" do
-  #      file = File.read(test_files['basic_jsonld'])
-  #      signed = 
-  #      puts @pub
-  #      puts @priv    
-  #    end
-  #  end
-  end
+    end
+end
