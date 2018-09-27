@@ -6,6 +6,8 @@ module JSON
       require 'rdf/normalize'
       require 'json/ld/signature/ed25519Signer'
       require 'json/ld/signature/ed25519Verifier'
+      require 'json/ld/signature/rsaSigner'
+      require 'json/ld/signature/rsaVerifier'
       
 #      autoload :Signer, 'json/ld/signature/ed25519Signer'
 #      autoload :Verifier, 'json/ld/signature/ed255Verifier'
@@ -71,7 +73,8 @@ module JSON
 #        digestdoc << normalized
 #        digestdoc << '@' + opts['domain'] unless opts['domain'].nil?
 #        digestdoc
-	 normalized
+
+         normalized
       end
 
       module_function :generateNormalizedGraph
