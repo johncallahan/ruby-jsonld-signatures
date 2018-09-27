@@ -5,7 +5,7 @@ Gem::Specification.new do |gem|
   gem.version               = File.read('VERSION').chomp
   gem.date                  = File.mtime('VERSION').strftime('%Y-%m-%d')
 
-  gem.name                  = "ruby-jsonld-signature"
+  gem.name                  = "ruby-jsonld-signatures"
   gem.homepage              = "http://github.com/bsletten/rdf-jsonld-signature"
   gem.license               = 'MIT' if gem.respond_to?(:license=)
   gem.summary               = "JSON-LD Signature implementation for Ruby."

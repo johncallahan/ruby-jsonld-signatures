@@ -10,7 +10,7 @@ Getting Started
 Add the gem to your Gemfile:
 
 ```ruby
-gem 'ruby-jsonld-signature'
+gem 'ruby-jsonld-signatures'
 ```
 
 then run `bundle install`
