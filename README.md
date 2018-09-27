@@ -125,6 +125,43 @@ and verifying including:
 * [rdf-normalize](https://github.com/ruby-rdf/rdf-normalize)
 * [ed25519](https://github.com/crypto-rb/ed25519)
 
+NOTE: additional keys that are NOT in the context vocabularies will
+NOT be part of the normalization process.  Thus, the following JSON-LD
+document is equalivalent to the blocks shown above:
+
+```json
+{
+  "@context": [ "https://w3id.org/credentials/v1","https://w3id.org/security/v1"],
+  "type" : [ "Credential" ],
+  "claim" : {
+    "id" : "did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk",
+    "publicKey" : "did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk#authn-key-1"
+  },
+  "foo" : "bar",
+  "issuer" : "did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk",
+  "issued" : "2018-03-15T00:00:00Z"
+}
+```
+
+The key "foo" is not found in either the credentials or security
+vocabularies (in the @context).  But the following document is not
+equivalent (the key "nonce" *is* part of both the credentials and security
+vocabularies - but it just has to be in one of them):
+
+```json
+{
+  "@context": [ "https://w3id.org/credentials/v1","https://w3id.org/security/v1"],
+  "type" : [ "Credential" ],
+  "claim" : {
+    "id" : "did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk",
+    "publicKey" : "did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk#authn-key-1"
+  },
+  "nonce" : "thisisjustarandomstring",
+  "issuer" : "did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk",
+  "issued" : "2018-03-15T00:00:00Z"
+}
+```
+
 Tests
 -----
 
