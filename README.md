@@ -45,7 +45,7 @@ Consider the following JSON-LD document:
 ```
 
 The goal of [Linked Data Signatures](https://w3c-dvcg.github.io/ld-signatures/) is to
-cryptographically "sign" the JSON-LD document such that the the order of
+cryptographically "sign" a JSON-LD document such that the the order of
 key/pairs within the JSON-LD document does not matter.  In other words,
 the signature value of the JSON content above would be:
 
