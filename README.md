@@ -144,8 +144,9 @@ document is equalivalent to the blocks shown above:
 ```
 
 The key "foo" is not found in either the credentials or security
-vocabularies (in the @context).  But the following document is not
-equivalent (the key "nonce" *is* part of both the credentials and security
+vocabularies (in the @context) and therefore *not* included in the
+normalized content.  But the following document is not equivalent (the
+key "nonce" *is* part of both the credentials and security
 vocabularies - but it just has to be in one of them):
 
 ```json
@@ -162,10 +163,28 @@ vocabularies - but it just has to be in one of them):
 }
 ```
 
+By the way, here is the normalized (or "canonicalized") content for
+all blocks above except the one with the "nonce" key-value pair added:
+
+```json
+<did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk> <https://w3id.org/security#publicKey> <did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk#authn-key-1> .
+_:c14n0 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/credentials#Credential> .
+_:c14n0 <https://w3id.org/credentials#claim> <did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk> .
+_:c14n0 <https://w3id.org/credentials#issued> "2018-03-15T00:00:00Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+_:c14n0 <https://w3id.org/credentials#issuer> <did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk> .
+```
+
 Tests
 -----
 
-* check RSA and Ed25519 encryption works
+* Sign a basic string
+* Sign a basic normalized (i.e., "canonicalized") document
+* Sign a basic JSON-LD document
+* Signatures of a second document that contains a non-vocabulary element are equivalent
+* Signatures of a second document that contains a vocabulary element are NOT equivalent
+* Signatures of a second document in different order are equivalent
+* Verify signature of a signed JSON-LD document
+* Detect when signature of a signed JSON-LD document is invalid
 
 Todo
 ----

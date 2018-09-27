@@ -10,8 +10,8 @@ describe JSON::LD::SIGNATURE::Signer do
 #    @pub = RbNaCl::VerifyKey.new ["ff1a646cc8b69fcb522aa1ed162bc2816878252a634384ce46f7507bfc92f68f"].pack('H*')
   end
   
-  context "test string" do
-    it "is possible to sign a basic string" do
+  context "test encryption" do
+    it "is possible to encrypt a basic string" do
       signatureValue = @priv.sign "Hello world"
 #      puts Base64.strict_encode64(signatureValue)
     end
