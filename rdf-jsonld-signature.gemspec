@@ -12,7 +12,7 @@ Gem::Specification.new do |gem|
   gem.description           = %q{RDF::JSON::LD:Signature is an implementation of the JSON-LD Signature specification for the RDF.rb library suite.}
   gem.rubyforge_project     = 'rdf-normalize'
 
-  gem.authors               = ['Brian Sletten']
+  gem.authors               = ['Brian Sletten', "John Callahan"]
   gem.email                 = 'public-rdf-ruby@w3.org'
 
   gem.platform              = Gem::Platform::RUBY
@@ -22,7 +22,7 @@ Gem::Specification.new do |gem|
   gem.require_paths         = %w(lib)
   gem.extensions            = %w()
   gem.test_files            = %w()
-  gem.has_rdoc              = false
+  #gem.has_rdoc              = false
 
   gem.required_ruby_version = '>= 1.9.2'
   gem.add_dependency             'rdf',             '~> 3.0.4'
