@@ -33,9 +33,11 @@ describe JSON::LD::SIGNATURE::Ed25519Signer do
       signed1_hash = JSON.parse(signed1)
       signed2_hash = JSON.parse(signed2)
 #	puts signed1_hash['signature']['signatureValue']
+#	puts "==============================="
+#	puts signed1['signature']['signatureValue']
 #	puts signed1
 #	puts signed2
-	signed1['signature']['signatureValue'] == signed2['signature']['signatureValue']
+	signed1_hash['signature']['signatureValue'] == signed2_hash['signature']['signatureValue']
     end
 
     it "matters if a document contains a vocabulary element" do
@@ -48,7 +50,7 @@ describe JSON::LD::SIGNATURE::Ed25519Signer do
 #	puts signed1_hash['signature']['signatureValue']
 #	puts signed1
 #	puts signed2
-	signed1['signature']['signatureValue'] != signed2['signature']['signatureValue']
+	signed1_hash['signature']['signatureValue'] != signed2_hash['signature']['signatureValue']
     end
 
     it "does not matter if elements are in different order" do
@@ -61,7 +63,7 @@ describe JSON::LD::SIGNATURE::Ed25519Signer do
 #	puts signed1_hash['signature']['signatureValue']
 #	puts signed1
 #	puts signed2
-	signed1['signature']['signatureValue'] == signed2['signature']['signatureValue']
+	signed1_hash['signature']['signatureValue'] == signed2_hash['signature']['signatureValue']
 
     end
 
