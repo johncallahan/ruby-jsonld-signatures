@@ -1,7 +1,4 @@
-module JSON
-  module LD
-    module SIGNATURE
-      module ED25519
+module JSON::LD::SIGNATURE::ED25519
 
   class Verifier
 
@@ -64,6 +61,4 @@ module JSON
     end
   end
 end
-end
-end
-end
+
