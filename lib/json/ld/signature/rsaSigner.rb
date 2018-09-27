@@ -1,4 +1,7 @@
-module JSON::LD::SIGNATURE::RSA
+module JSON
+  module LD
+    module SIGNATURE
+      module RSA
 
   class Signer
 
@@ -92,4 +95,7 @@ module JSON::LD::SIGNATURE::RSA
       jsonld.to_json
     end
   end
+end
+end
+end
 end

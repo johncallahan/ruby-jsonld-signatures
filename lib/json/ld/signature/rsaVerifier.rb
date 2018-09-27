@@ -1,4 +1,7 @@
-module JSON::LD::SIGNATURE::RSA
+module JSON
+  module LD
+    module SIGNATURE
+      module RSA
 
   class Verifier
 
@@ -75,4 +78,7 @@ module JSON::LD::SIGNATURE::RSA
       publicKey.verify digest, Base64.decode64(signatureValue), normalizedGraph
     end
   end
+end
+end
+end
 end
