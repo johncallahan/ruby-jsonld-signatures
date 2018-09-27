@@ -12,7 +12,7 @@ describe JSON::LD::SIGNATURE::Verifier do
 
     context "test files" do
       test_files = {
-          "basic_jsonld" => "data/rop_media_type.jsonld"
+          "basic_jsonld" => "data/testdoc.jsonld"
       }
 
       it "is possible to verify a signed basic document" do

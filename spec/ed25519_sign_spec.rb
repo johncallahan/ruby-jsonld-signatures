@@ -63,6 +63,7 @@ describe JSON::LD::SIGNATURE::Signer do
 #	puts signed2
 	signed1['signature']['signatureValue'] == signed2['signature']['signatureValue']
 
-  end
+    end
 
+end
 end
