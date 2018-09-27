@@ -1,16 +1,31 @@
-module JSON::LD::SIGNATURE
+module JSON
+  module LD
+    module SIGNATURE
+      module ED25519
 
-  class Verify
+  class Verifier
+
+    attr_writer :pub
+    attr_writer :priv
+
+    def pub
+      @pub
+    end
+
+    def priv
+      @priv
+    end
     
-    def self.verify(input, options = {})
+    def verify(input, options = {})
       
       # We require a publicKeyPem in the options hash
-      if options['publicKey'].nil?
-        raise JsonLdSignatureError::MissingKey, "options parameter must include publicKey"
-      end
+#      if options['publicKey'].nil?
+#        raise JsonLdSignatureError::MissingKey, "options parameter must include publicKey"
+#      end
 
       # The publicKeyPem can be either a String or a parsed RSA key
-      publicKey = options['publicKey']
+#      publicKey = options['publicKey']
+      publicKey = pub
       
       # Check the input, it should either be a String or a parsed JSON object
 
@@ -48,4 +63,7 @@ module JSON::LD::SIGNATURE
       publicKey.verify Base64.decode64(signatureValue), normalizedGraph
     end
   end
+end
+end
+end
 end

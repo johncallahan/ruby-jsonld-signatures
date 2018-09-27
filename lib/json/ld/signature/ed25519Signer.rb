@@ -1,6 +1,22 @@
-module JSON::LD::SIGNATURE
-  class Sign
-    def self.sign(input, options = {} )
+module JSON
+  module LD
+    module SIGNATURE
+      module ED25519
+
+  class Signer
+
+    attr_writer :pub
+    attr_writer :priv
+
+    def pub
+      @pub
+    end
+
+    def priv
+      @priv
+    end
+
+    def sign(input, options = {} )
       
       # We require a creator to identify the signing key
       
@@ -13,12 +29,13 @@ module JSON::LD::SIGNATURE
       # TODO: Validate the resolvability of the URL?
 
       # We require a privateKeyPem in the options hash
-      if options['privateKey'].nil?
-        raise JsonLdSignatureError::MissingKey, "options parameter must include privateKey"
-      end
+#      if options['privateKey'].nil?
+#        raise JsonLdSignatureError::MissingKey, "options parameter must include privateKey"
+#      end
 
       # The privateKeyPem can be either a String or a parsed RSA key
-      privateKey = options['privateKey']
+#      privateKey = options['privateKey']
+      privateKey = priv
 
 #      unless privateKey.private?
 #        raise JsonLdSignatureError::WrongKeyType, "submitted key is a public key"
@@ -76,4 +93,7 @@ module JSON::LD::SIGNATURE
       jsonld.to_json
     end
   end
+end
+end
+end
 end

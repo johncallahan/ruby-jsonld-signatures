@@ -1,14 +1,62 @@
-
-
 module JSON
   module LD
     module SIGNATURE
       require 'base64'
       require 'json/ld'
       require 'rdf/normalize'
+      require 'json/ld/signature/ed25519Signer'
+      require 'json/ld/signature/ed25519Verifier'
       
-      autoload :Sign, 'json/ld/signature/sign'
-      autoload :Verify, 'json/ld/signature/verify'
+#      autoload :Signer, 'json/ld/signature/ed25519Signer'
+#      autoload :Verifier, 'json/ld/signature/ed255Verifier'
+
+      class Signer
+
+        attr_writer :suite
+	attr_writer :pub
+	attr_writer :priv
+      
+        def sign
+	  suite.sign()
+	end
+
+	def suite
+	  @suite ||= Ed25519Signer.new
+	end
+
+	def pub
+	  @pub
+	end
+
+	def priv
+	  @priv
+	end
+
+      end
+
+      class Verifier
+
+        attr_writer :suite
+        attr_writer :pub
+        attr_writer :priv
+      
+        def verify
+	  suite.verify()
+	end
+
+	def suite
+	  @suite ||= Ed25519Verifier.new
+	end
+
+	def pub
+	  @pub
+	end
+
+	def priv
+	  @priv
+	end
+
+      end
       
       def generateNormalizedGraph(jsonLDDoc, opts)
         jsonLDDoc.delete 'signature'
@@ -25,7 +73,7 @@ module JSON
 #        digestdoc
 	 normalized
       end
-      
+
       module_function :generateNormalizedGraph
       
       SECURITY_CONTEXT_URL = 'https://w3id.org/security/v1'
@@ -41,4 +89,3 @@ module JSON
     end
   end
 end
-
