@@ -4,6 +4,11 @@ in Ruby that supports the following encryption options:
 * RSA
 * Ed25519
 
+Demo
+----
+
+See [an example](https://ldsigdemo.herokuapp.com/) of the gem in action.  The source code for the demo is [here](https://github.com/johncallahan/ldsigdemo).
+
 Getting Started
 ---------------
 
