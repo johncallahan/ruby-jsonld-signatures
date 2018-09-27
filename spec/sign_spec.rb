@@ -1,29 +1,22 @@
 require 'spec_helper'
 
-describe JSON::LD::SIGNATURE::Sign do
+describe JSON::LD::SIGNATURE::Signer do
   before :each do
-    @pub = OpenSSL::PKey::RSA.new File.read 'data/pub_key.pem'
-    @priv = OpenSSL::PKey::RSA.new File.read 'data/priv_key.pem'
+    @signer = JSON::LD::SIGNATURE::RSA::Signer.new
+    @signer.pub = OpenSSL::PKey::RSA.new File.read 'data/pub_key.pem'
+    @signer.priv = OpenSSL::PKey::RSA.new File.read 'data/priv_key.pem'
   end
   
   context "test files" do
     test_files = {
-        "basic_jsonld" => "data/rop_media_type.jsonld"
+        "basic_jsonld" => "data/testdoc.jsonld"
     }
     
     it "is possible to sign a basic document" do
       file = File.read(test_files['basic_jsonld'])
-      signed = JSON::LD::SIGNATURE::Sign.sign file, { 'privateKeyPem' => @priv, 'creator' => 'did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk#authn-key-1'}
-      puts signed
+      signed = @signer.sign file, { 'creator' => 'did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk#authn-key-1'}
+#      puts signed
     end
   end
   
-#  describe "sign" do
-#    it "is possible to sign a basic document" do
-#      file = File.read(test_files['basic_jsonld'])
-#      signed = 
-#      puts @pub
-#      puts @priv    
-#    end
-#  end
 end

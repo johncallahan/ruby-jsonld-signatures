@@ -1,9 +1,13 @@
 require 'spec_helper'
 
-describe JSON::LD::SIGNATURE::Verify do
+describe JSON::LD::SIGNATURE::Verifier do
     before :each do
-      @pub = OpenSSL::PKey::RSA.new File.read 'data/pub_key.pem'
-      @priv = OpenSSL::PKey::RSA.new File.read 'data/priv_key.pem'
+      @signer = JSON::LD::SIGNATURE::RSA::Signer.new
+      @verifier = JSON::LD::SIGNATURE::RSA::Verifier.new
+      @signer.pub = OpenSSL::PKey::RSA.new File.read 'data/pub_key.pem'
+      @signer.priv = OpenSSL::PKey::RSA.new File.read 'data/priv_key.pem'
+      @verifier.pub = OpenSSL::PKey::RSA.new File.read 'data/pub_key.pem'
+      @verifier.priv = OpenSSL::PKey::RSA.new File.read 'data/priv_key.pem'
     end
 
     context "test files" do
@@ -13,18 +17,10 @@ describe JSON::LD::SIGNATURE::Verify do
 
       it "is possible to verify a signed basic document" do
         file = File.read(test_files['basic_jsonld'])
-        signed = JSON::LD::SIGNATURE::Sign.sign file, { 'privateKeyPem' => @priv, 'creator' => 'http://example.com/foo/key/1'}
-        verified = JSON::LD::SIGNATURE::Verify.verify signed, { 'publicKeyPem' => @pub, 'creator' => 'http://example.com/foo/key/1'}
-        puts "VERIFIED: #{verified}"
+        signed = @signer.sign file, { 'creator' => 'http://example.com/foo/key/1'}
+        verified = @verifier.verify signed, { 'creator' => 'http://example.com/foo/key/1'}
+#        puts "VERIFIED: #{verified}"
       end
     end
 
-  #  describe "sign" do
-  #    it "is possible to sign a basic document" do
-  #      file = File.read(test_files['basic_jsonld'])
-  #      signed = 
-  #      puts @pub
-  #      puts @priv    
-  #    end
-  #  end
   end

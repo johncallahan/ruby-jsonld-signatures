@@ -1,6 +1,22 @@
-module JSON::LD::SIGNATURE
-  class Sign
-    def self.sign(input, options = {} )
+module JSON
+  module LD
+    module SIGNATURE
+      module RSA
+
+  class Signer
+
+    attr_writer :pub
+    attr_writer :priv
+
+    def pub
+      @pub
+    end
+
+    def priv
+      @priv
+    end
+
+    def sign(input, options = {} )
       
       # We require a creator to identify the signing key
       
@@ -13,17 +29,18 @@ module JSON::LD::SIGNATURE
       # TODO: Validate the resolvability of the URL?
 
       # We require a privateKeyPem in the options hash
-      if options['privateKeyPem'].nil?
-        raise JsonLdSignatureError::MissingKey, "options parameter must include privateKeyPem"
-      end
+#      if options['privateKeyPem'].nil?
+#        raise JsonLdSignatureError::MissingKey, "options parameter must include privateKeyPem"
+#      end
 
       # The privateKeyPem can be either a String or a parsed RSA key
-      privateKey = case options['privateKeyPem']
-      when String then OpenSSL::PKey::RSA.new options['privateKeyPem']
-      when OpenSSL::PKey::RSA then options['privateKeyPem']
-      else 
-        raise JsonLdSignatureError::InvalidKeyType, "key must be RSA Key or PEM String"
-      end
+#      privateKey = case options['privateKeyPem']
+#      when String then OpenSSL::PKey::RSA.new options['privateKeyPem']
+#      when OpenSSL::PKey::RSA then options['privateKeyPem']
+#      else 
+#        raise JsonLdSignatureError::InvalidKeyType, "key must be RSA Key or PEM String"
+#      end
+      privateKey = @priv
 
       unless privateKey.private?
         raise JsonLdSignatureError::WrongKeyType, "submitted key is a public key"
@@ -78,4 +95,7 @@ module JSON::LD::SIGNATURE
       jsonld.to_json
     end
   end
+end
+end
+end
 end
