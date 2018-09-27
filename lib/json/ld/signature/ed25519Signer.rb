@@ -1,9 +1,8 @@
 module JSON
   module LD
     module SIGNATURE
-      module ED25519
 
-  class Signer
+  class Ed25519Signer
 
     attr_writer :pub
     attr_writer :priv
@@ -96,4 +95,4 @@ module JSON
 end
 end
 end
-end
+

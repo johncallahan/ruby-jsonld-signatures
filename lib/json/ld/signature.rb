@@ -1,14 +1,20 @@
+module JSON
+  module LD
+    module SIGNATURE
+
 require 'base64'
 require 'json/ld'
 require 'rdf/normalize'
+require 'json/ld/signature'
 require 'json/ld/signature/ed25519Signer'
 require 'json/ld/signature/ed25519Verifier'
 require 'json/ld/signature/rsaSigner'
 require 'json/ld/signature/rsaVerifier'
-      
-module JSON
-  module LD
-    module SIGNATURE
+
+autoload :Ed25519Singer, 'json/ld/signature/ed25519Singer'
+autoload :Ed25519Verifier, 'json/ld/signature/ed25519Verifier'
+autoload :RsaSinger, 'json/ld/signature/rsaSinger'
+autoload :RsaVerifier, 'json/ld/signature/rsaVerifier'
 
       def generateNormalizedGraph(jsonLDDoc, opts)
         jsonLDDoc.delete 'signature'

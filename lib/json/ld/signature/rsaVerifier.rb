@@ -1,9 +1,8 @@
 module JSON
   module LD
     module SIGNATURE
-      module RSA
 
-  class Verifier
+  class RsaVerifier
 
     attr_writer :pub
     attr_writer :priv
@@ -81,4 +80,4 @@ module JSON
 end
 end
 end
-end
+

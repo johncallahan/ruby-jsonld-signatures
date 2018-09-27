@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe JSON::LD::SIGNATURE::RSA::Signer do
+describe JSON::LD::SIGNATURE::RsaSigner do
   before :each do
-    @signer = JSON::LD::SIGNATURE::RSA::Signer.new
+    @signer = JSON::LD::SIGNATURE::RsaSigner.new
     @signer.pub = OpenSSL::PKey::RSA.new File.read 'data/pub_key.pem'
     @signer.priv = OpenSSL::PKey::RSA.new File.read 'data/priv_key.pem'
   end

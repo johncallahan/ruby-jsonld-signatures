@@ -1,9 +1,8 @@
 module JSON
   module LD
     module SIGNATURE
-      module ED25519
 
-  class Verifier
+  class Ed25519Verifier
 
     attr_writer :pub
     attr_writer :priv
@@ -66,4 +65,4 @@ module JSON
 end
 end
 end
-end
+

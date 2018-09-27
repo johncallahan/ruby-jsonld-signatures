@@ -1,9 +1,8 @@
 module JSON
   module LD
     module SIGNATURE
-      module RSA
 
-  class Signer
+  class RsaSigner
 
     attr_writer :pub
     attr_writer :priv
@@ -98,4 +97,4 @@ module JSON
 end
 end
 end
-end
+

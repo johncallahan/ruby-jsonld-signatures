@@ -2,10 +2,10 @@ require 'json'
 require 'ed25519'
 require 'spec_helper'
 
-describe JSON::LD::SIGNATURE::ED25519::Verifier do
+describe JSON::LD::SIGNATURE::Ed25519Verifier do
     before :each do
-      @signer = JSON::LD::SIGNATURE::ED25519::Signer.new
-      @verifier = JSON::LD::SIGNATURE::ED25519::Verifier.new
+      @signer = JSON::LD::SIGNATURE::Ed25519Signer.new
+      @verifier = JSON::LD::SIGNATURE::Ed25519Verifier.new
       @signer.pub = Ed25519::VerifyKey.new ["ff1a646cc8b69fcb522aa1ed162bc2816878252a634384ce46f7507bfc92f68f"].pack('H*')
       @signer.priv = Ed25519::SigningKey.new ["7f702a609f842057be24b5297e451662876f03b047d660362cd123f71d2a3b63"].pack('H*')
       @verifier.pub = Ed25519::VerifyKey.new ["ff1a646cc8b69fcb522aa1ed162bc2816878252a634384ce46f7507bfc92f68f"].pack('H*')

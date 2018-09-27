@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe JSON::LD::SIGNATURE::RSA::Verifier do
+describe JSON::LD::SIGNATURE::RsaVerifier do
     before :each do
-      @signer = JSON::LD::SIGNATURE::RSA::Signer.new
-      @verifier = JSON::LD::SIGNATURE::RSA::Verifier.new
+      @signer = JSON::LD::SIGNATURE::RsaSigner.new
+      @verifier = JSON::LD::SIGNATURE::RsaVerifier.new
       @signer.pub = OpenSSL::PKey::RSA.new File.read 'data/pub_key.pem'
       @signer.priv = OpenSSL::PKey::RSA.new File.read 'data/priv_key.pem'
       @verifier.pub = OpenSSL::PKey::RSA.new File.read 'data/pub_key.pem'
