@@ -1,0 +1,5 @@
+<did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk> <https://w3id.org/security#publicKey> <did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk#authn-key-1> .
+_:c14n0 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/credentials#Credential> .
+_:c14n0 <https://w3id.org/credentials#claim> <did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk> .
+_:c14n0 <https://w3id.org/credentials#issued> "2018-03-15T00:00:00Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+_:c14n0 <https://w3id.org/credentials#issuer> <did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk> .

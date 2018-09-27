@@ -31,7 +31,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'rdf-spec'
   gem.add_development_dependency 'open-uri-cached', '~> 0.0', '>= 0.0.5'
   gem.add_development_dependency 'rspec',           '~> 3.2'
-  gem.add_development_dependency 'webmock',         '~> 1.17'
+  gem.add_development_dependency 'webmock',         '~> 2.3.2'
   gem.add_development_dependency 'json-ld',         '~> 3.0.2'
   gem.add_development_dependency 'yard' ,           '~> 0.8'
   gem.post_install_message  = nil

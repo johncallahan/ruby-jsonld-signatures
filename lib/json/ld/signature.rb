@@ -4,6 +4,8 @@ module JSON
       require 'base64'
       require 'json/ld'
       require 'rdf/normalize'
+      require 'json/ld/signature/ed25519Signer'
+      require 'json/ld/signature/ed25519Verifier'
       require 'json/ld/signature/rsaSigner'
       require 'json/ld/signature/rsaVerifier'
       
@@ -13,24 +15,24 @@ module JSON
       class Signer
 
         attr_writer :suite
-        attr_writer :pub
-        attr_writer :priv
+	attr_writer :pub
+	attr_writer :priv
       
         def sign
-          suite.sign()
-        end
+	  suite.sign()
+	end
 
-        def suite
-          @suite ||= RSASigner.new
-        end
+	def suite
+	  @suite ||= Ed25519Signer.new
+	end
 
-        def pub
-          @pub
-        end
+	def pub
+	  @pub
+	end
 
-        def priv
-          @priv
-        end
+	def priv
+	  @priv
+	end
 
       end
 
@@ -41,20 +43,20 @@ module JSON
         attr_writer :priv
       
         def verify
-          suite.verify()
-        end
+	  suite.verify()
+	end
 
-        def suite
-          @suite ||= RSAVerifier.new
-        end
+	def suite
+	  @suite ||= Ed25519Verifier.new
+	end
 
-        def pub
-          @pub
-        end
+	def pub
+	  @pub
+	end
 
-        def priv
-          @priv
-        end
+	def priv
+	  @priv
+	end
 
       end
       
@@ -71,6 +73,7 @@ module JSON
 #        digestdoc << normalized
 #        digestdoc << '@' + opts['domain'] unless opts['domain'].nil?
 #        digestdoc
+
          normalized
       end
 
