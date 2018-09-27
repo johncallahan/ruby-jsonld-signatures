@@ -1,4 +1,12 @@
 module JSON
+end
+
+module JSON
+  module LD
+  end
+end
+
+module JSON
   module LD
     module SIGNATURE
       require 'base64'
@@ -11,54 +19,6 @@ module JSON
       
 #      autoload :Signer, 'json/ld/signature/ed25519Signer'
 #      autoload :Verifier, 'json/ld/signature/ed255Verifier'
-
-      class Signer
-
-        attr_writer :suite
-	attr_writer :pub
-	attr_writer :priv
-      
-        def sign
-	  suite.sign()
-	end
-
-	def suite
-	  @suite ||= Ed25519Signer.new
-	end
-
-	def pub
-	  @pub
-	end
-
-	def priv
-	  @priv
-	end
-
-      end
-
-      class Verifier
-
-        attr_writer :suite
-        attr_writer :pub
-        attr_writer :priv
-      
-        def verify
-	  suite.verify()
-	end
-
-	def suite
-	  @suite ||= Ed25519Verifier.new
-	end
-
-	def pub
-	  @pub
-	end
-
-	def priv
-	  @priv
-	end
-
-      end
       
       def generateNormalizedGraph(jsonLDDoc, opts)
         jsonLDDoc.delete 'signature'

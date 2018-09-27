@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe JSON::LD::SIGNATURE::Verifier do
+describe JSON::LD::SIGNATURE::RSA::Verifier do
     before :each do
       @signer = JSON::LD::SIGNATURE::RSA::Signer.new
       @verifier = JSON::LD::SIGNATURE::RSA::Verifier.new

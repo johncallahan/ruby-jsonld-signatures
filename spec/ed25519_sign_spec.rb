@@ -2,7 +2,7 @@ require 'ed25519'
 #require 'rbnacl'
 require 'spec_helper'
 
-describe JSON::LD::SIGNATURE::Signer do
+describe JSON::LD::SIGNATURE::ED25519::Signer do
   before :each do
     @signer = JSON::LD::SIGNATURE::ED25519::Signer.new
     @signer.pub = Ed25519::VerifyKey.new ["ff1a646cc8b69fcb522aa1ed162bc2816878252a634384ce46f7507bfc92f68f"].pack('H*')

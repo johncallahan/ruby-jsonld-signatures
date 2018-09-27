@@ -2,7 +2,7 @@ require 'json'
 require 'ed25519'
 require 'spec_helper'
 
-describe JSON::LD::SIGNATURE::Verifier do
+describe JSON::LD::SIGNATURE::ED25519::Verifier do
     before :each do
       @signer = JSON::LD::SIGNATURE::ED25519::Signer.new
       @verifier = JSON::LD::SIGNATURE::ED25519::Verifier.new
