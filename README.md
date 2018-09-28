@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/johncallahan/ruby-jsonld-signatures.svg?branch=master)](https://travis-ci.org/johncallahan/ruby-jsonld-signatures)
+[![Build Status](https://travis-ci.org/johncallahan/ruby-jsonld-signatures.svg?branch=master)](https://travis-ci.org/johncallahan/ruby-jsonld-signatures) [![Gem Version](https://badge.fury.io/rb/ruby-jsonld-signatures.svg)](https://badge.fury.io/rb/ruby-jsonld-signatures)
 
 This gem is an implementation of the JSON-LD Signatures specification
 in Ruby that supports the following encryption options:
