@@ -37,7 +37,7 @@ describe JSON::LD::SIGNATURE::Ed25519Signer do
 #	puts signed1['signature']['signatureValue']
 #	puts signed1
 #	puts signed2
-	signed1_hash['signature']['signatureValue'] == signed2_hash['signature']['signatureValue']
+	expect(signed1_hash['signature']['signatureValue'] == signed2_hash['signature']['signatureValue']).to be true
     end
 
     it "matters if a document contains a vocabulary element" do
@@ -50,7 +50,7 @@ describe JSON::LD::SIGNATURE::Ed25519Signer do
 #	puts signed1_hash['signature']['signatureValue']
 #	puts signed1
 #	puts signed2
-	signed1_hash['signature']['signatureValue'] != signed2_hash['signature']['signatureValue']
+	expect(signed1_hash['signature']['signatureValue'] != signed2_hash['signature']['signatureValue']).to be true
     end
 
     it "does not matter if elements are in different order" do
@@ -63,8 +63,7 @@ describe JSON::LD::SIGNATURE::Ed25519Signer do
 #	puts signed1_hash['signature']['signatureValue']
 #	puts signed1
 #	puts signed2
-	signed1_hash['signature']['signatureValue'] == signed2_hash['signature']['signatureValue']
-
+	expect(signed1_hash['signature']['signatureValue'] == signed2_hash['signature']['signatureValue']).to be true
     end
 
 end

@@ -74,7 +74,7 @@ module JSON
       
       normalizedGraph = JSON::LD::SIGNATURE::generateNormalizedGraph jsonld, normOpts
       
-      digest = OpenSSL::Digest::SHA512.new
+      digest = OpenSSL::Digest::SHA256.new
       signature = privateKey.sign digest, normalizedGraph
       enc = Base64.strict_encode64(signature)
       

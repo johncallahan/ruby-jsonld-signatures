@@ -19,7 +19,7 @@ describe JSON::LD::SIGNATURE::RsaVerifier do
         file = File.read(test_files['basic_jsonld'])
         signed = @signer.sign file, { 'creator' => 'http://example.com/foo/key/1'}
         verified = @verifier.verify signed, { 'creator' => 'http://example.com/foo/key/1'}
-#        puts "VERIFIED: #{verified}"
+	expect(verified).to be true
       end
     end
 
