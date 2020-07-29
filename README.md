@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/johncallahan/ruby-jsonld-signatures.svg?branch=master)](https://travis-ci.org/johncallahan/ruby-jsonld-signatures) [![Gem Version](https://badge.fury.io/rb/ruby-jsonld-signatures.svg)](https://badge.fury.io/rb/ruby-jsonld-signatures) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-This gem is an implementation of the JSON-LD Signatures specification
+This [gem](https://rubygems.org/gems/ruby-jsonld-signatures) is an implementation of the JSON-LD Signatures specification
 in Ruby that supports the following encryption options:
 
 * RSA
@@ -28,10 +28,21 @@ Development
 Clone this repo, bundle and run the rspec tests:
 
 ```shell
-git clone https://github.com/johncallahan/ruby-jsonld-signatures.git
-bundle install
-rspec
+% git clone https://github.com/johncallahan/ruby-jsonld-signatures.git
+% bundle install
+% rspec
 ```
+
+You can bump the VERSON, update the ruby-jsonld-signatures.gemspec
+file, commit changes, and then
+
+```shell
+% gem build ruby-jsonld-signatures.gemspec 
+% gem push ruby-jsonld-signatures-0.0.xx.gem 
+```
+
+for the gem file produced as a result of the build (this generated
+file is NOT add or committed to git).
 
 Description
 -----------
