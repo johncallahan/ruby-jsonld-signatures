@@ -33,7 +33,7 @@ Clone this repo, bundle and run the rspec tests:
 % rspec
 ```
 
-You can bump the VERSON, update the ruby-jsonld-signatures.gemspec
+You can bump the VERSION, update the ruby-jsonld-signatures.gemspec
 file, commit changes, and then
 
 ```shell
