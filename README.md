@@ -40,14 +40,17 @@ Consider the following JSON-LD document:
 
 ```json
 {
-  "@context": [ "https://w3id.org/credentials/v1","https://w3id.org/security/v1"],
-  "type" : [ "Credential" ],
-  "claim" : {
-    "id" : "did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk",
-    "publicKey" : "did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk#authn-key-1"
-  },
-  "issuer" : "did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk",
-  "issued" : "2018-03-15T00:00:00Z"
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://www.w3.org/2018/credentials/examples/v1"
+  ],
+  "id": "https://example.com/credentials/1872",
+  "type": ["VerifiableCredential", "AlumniCredential"],
+  "issuanceDate": "2010-01-01T19:23:24Z",
+  "credentialSubject": {
+    "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
+    "alumniOf": "Example University"
+  }
 }
 ```
 
@@ -57,7 +60,7 @@ key/pairs within the JSON-LD document does not matter.  In other words,
 the signature value of the JSON content above would be:
 
 ```
-t/T2Wv335B2guVYW88I9uWKEdrE3HFddrXt14AVo9aD9yr5BAbGJT5eQbVGdG+O0Hn6RU9IYgi1o15/F3x37Ag==
+o4lfcsHY5M2PQla5nXLcoC8hEbRodZHyCyyq7ca6/v+/PWec6nj7FWgzGdQ9/bhcqKR9FAPp/5+ncPXmE2Z2CA==
 ```
 
 The following document is equivalent to the JSON-LD document above even
@@ -66,18 +69,18 @@ embedded blocks) are in different order but their values are equal:
 
 ```json
 {
-  "issued" : "2018-03-15T00:00:00Z",
-
-     "issuer" : "did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk",
-     "claim" : {
-       "publicKey" : "did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk#authn-key-1",
-       "id" : "did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk"
-     },
-
-  "type" : [ "Credential" ],
-  "@context": [ "https://w3id.org/credentials/v1","https://w3id.org/security/v1"]
+  "issuanceDate": "2010-01-01T19:23:24Z",
+  "id": "https://example.com/credentials/1872",
+  "credentialSubject": {
+    "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
+    "alumniOf": "Example University"
+  },
+  "type": ["VerifiableCredential", "AlumniCredential"],
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://www.w3.org/2018/credentials/examples/v1"
+  ]
 }
-
 ```
 
 After generating the signature value for the JSON-LD document, the
@@ -85,19 +88,21 @@ signature value is appended to the document with additional metadata:
 
 ```json
 {
-  "@context":["https://w3id.org/credentials/v1","https://w3id.org/security/v1"],
-  "type":["Credential"],
-  "claim":{
-    "id":"did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk",
-    "publicKey":"did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk#authn-key-1"
+  "@context":[
+    "https://www.w3.org/2018/credentials/v1",
+    "https://www.w3.org/2018/credentials/examples/v1"],
+  "id":"https://example.com/credentials/1872",
+  "type":["VerifiableCredential","AlumniCredential"],
+  "issuanceDate":"2010-01-01T19:23:24Z",
+  "credentialSubject":{
+    "id":"did:example:ebfeb1f712ebc6f1c276e12ec21",
+    "alumniOf":"Example University"
   },
-  "issuer":"did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk",
-  "issued":"2018-03-15T00:00:00Z",
   "signature":{
     "type":"Ed25519Signature2018",
     "creator":"did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk#authn-key-1",
     "created":"2018-03-15T00:00:00Z",
-    "signatureValue":"t/T2Wv335B2guVYW88I9uWKEdrE3HFddrXt14AVo9aD9yr5BAbGJT5eQbVGdG+O0Hn6RU9IYgi1o15/F3x37Ag=="
+    "signatureValue":"o4lfcsHY5M2PQla5nXLcoC8hEbRodZHyCyyq7ca6/v+/PWec6nj7FWgzGdQ9/bhcqKR9FAPp/5+ncPXmE2Z2CA=="
   }
 }
 ```
@@ -138,54 +143,48 @@ document is equalivalent to the blocks shown above:
 
 ```json
 {
-  "@context": [ "https://w3id.org/credentials/v1","https://w3id.org/security/v1"],
-  "type" : [ "Credential" ],
-  "claim" : {
-    "id" : "did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk",
-    "publicKey" : "did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk#authn-key-1"
-  },
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://www.w3.org/2018/credentials/examples/v1"
+  ],
+  "id": "https://example.com/credentials/1872",
+  "type": ["VerifiableCredential", "AlumniCredential"],
+  "issuanceDate": "2010-01-01T19:23:24Z",
   "foo" : "bar",
-  "issuer" : "did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk",
-  "issued" : "2018-03-15T00:00:00Z"
+  "credentialSubject": {
+    "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
+    "alumniOf": "Example University"
+  }
 }
 ```
 
 The key "foo" is not found in either the credentials or security
 vocabularies (in the @context) and therefore *not* included in the
 normalized content.  But the following document is not equivalent (the
-key "nonce" *is* part of both the credentials and security
+key "validUntil" *is* part of both the credentials and security
 vocabularies - but it just has to be in one of them):
 
 ```json
 {
-  "@context": [ "https://w3id.org/credentials/v1","https://w3id.org/security/v1"],
-  "type" : [ "Credential" ],
-  "claim" : {
-    "id" : "did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk",
-    "publicKey" : "did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk#authn-key-1"
-  },
-  "nonce" : "thisisjustarandomstring",
-  "issuer" : "did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk",
-  "issued" : "2018-03-15T00:00:00Z"
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://www.w3.org/2018/credentials/examples/v1"
+  ],
+  "id": "https://example.com/credentials/1872",
+  "type": ["VerifiableCredential", "AlumniCredential"],
+  "issuanceDate": "2010-01-01T19:23:24Z",
+  "validUntil" : "2030-01-01T19:23:24Z",
+  "credentialSubject": {
+    "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
+    "alumniOf": "Example University"
+  }
 }
-```
-
-By the way, here is the normalized (or "canonicalized") content for
-all blocks above except the one with the "nonce" key-value pair added:
-
-```json
-<did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk> <https://w3id.org/security#publicKey> <did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk#authn-key-1> .
-_:c14n0 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/credentials#Credential> .
-_:c14n0 <https://w3id.org/credentials#claim> <did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk> .
-_:c14n0 <https://w3id.org/credentials#issued> "2018-03-15T00:00:00Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
-_:c14n0 <https://w3id.org/credentials#issuer> <did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk> .
 ```
 
 Tests
 -----
 
 * Sign a basic string
-* Sign a basic normalized (i.e., "canonicalized") document
 * Sign a basic JSON-LD document
 * Signatures of a second document that contains a non-vocabulary element are equivalent
 * Signatures of a second document that contains a vocabulary element are NOT equivalent

@@ -1,11 +1,14 @@
 {
-  "@context": [ "https://w3id.org/credentials/v1","https://w3id.org/security/v1"],
-  "type" : [ "Credential" ],
-  "claim" : {
-    "id" : "did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk",
-    "publicKey" : "did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk#authn-key-1"
-  },
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://www.w3.org/2018/credentials/examples/v1"
+  ],
+  "id": "https://example.com/credentials/1872",
+  "type": ["VerifiableCredential", "AlumniCredential"],
+  "issuanceDate": "2010-01-01T19:23:24Z",
   "foo" : "bar",
-  "issuer" : "did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk",
-  "issued" : "2018-03-15T00:00:00Z"
+  "credentialSubject": {
+    "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
+    "alumniOf": "Example University"
+  }
 }

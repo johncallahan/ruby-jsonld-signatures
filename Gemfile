@@ -1,5 +1,6 @@
 source "https://rubygems.org"
-gem 'json-ld'
+gem 'json-ld', '~> 3.1.4'
+gem 'rdf', '~> 3.1'
 gem 'rdf-normalize'
 gem 'rdf-turtle'
 gem 'rspec'
