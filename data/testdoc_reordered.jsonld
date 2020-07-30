@@ -2,7 +2,7 @@
   "image": "https://manu.sporny.org/images/manu.png",
   "name": "Manu Sporny",
   "@context": [
-    { "@version": 1.1 },
+    "http://schema.org/",
     "https://w3id.org/security/v2"
   ],
   "homepage": "https://manu.sporny.org/"

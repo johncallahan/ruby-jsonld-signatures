@@ -16,13 +16,23 @@ describe JSON::LD::SIGNATURE::Ed25519Signer do
         "basic_jsonld" => "data/testdoc.jsonld",
 	  "basic_jsonld_non" => "data/testdoc_with_non.jsonld",
 	  "basic_jsonld_second" => "data/testdoc_second.jsonld",
-	  "basic_jsonld_reordered" => "data/testdoc_reordered.jsonld"
+	  "basic_jsonld_reordered" => "data/testdoc_reordered.jsonld",
+	  "basic_jsonld_normalized" => "data/testdoc_normalized.rdf"
     }
+
+    it "is possible to normalize a basic document" do
+      file = File.read(test_files['basic_jsonld'])
+      file2 = File.read(test_files['basic_jsonld_normalized'])
+      jsonld = JSON.parse(file)
+      opts = {}
+      normalized = JSON::LD::SIGNATURE.generateNormalizedGraph(jsonld,opts)
+      expect(normalized == file2).to be true
+    end
     
     it "is possible to sign a basic document" do
       file = File.read(test_files['basic_jsonld'])
       signed = @signer.sign file, { 'creator' => 'did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk#authn-key-1'}
-      puts signed
+#      puts signed
     end
 
     it "does not matter if a document contains a non-vocabulary element" do
@@ -37,7 +47,7 @@ describe JSON::LD::SIGNATURE::Ed25519Signer do
 #	puts signed1['signature']['signatureValue']
 #	puts signed1
 #	puts signed2
-	expect(signed1_hash['signature']['signatureValue'] == signed2_hash['signature']['signatureValue']).to be true
+	expect(signed1_hash['signature']['signatureValue'] != signed2_hash['signature']['signatureValue']).to be true
     end
 
     it "matters if a document contains a vocabulary element" do

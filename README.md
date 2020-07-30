@@ -64,16 +64,12 @@ Consider the following JSON-LD document:
 ```json
 {
   "@context": [
-    "https://www.w3.org/2018/credentials/v1",
-    "https://www.w3.org/2018/credentials/examples/v1"
+    "http://schema.org/",
+    "https://w3id.org/security/v2"
   ],
-  "id": "https://example.com/credentials/1872",
-  "type": ["VerifiableCredential", "AlumniCredential"],
-  "issuanceDate": "2010-01-01T19:23:24Z",
-  "credentialSubject": {
-    "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
-    "alumniOf": "Example University"
-  }
+  "name": "Manu Sporny",
+  "homepage": "https://manu.sporny.org/",
+  "image": "https://manu.sporny.org/images/manu.png"
 }
 ```
 
@@ -83,7 +79,7 @@ key/pairs within the JSON-LD document does not matter.  In other words,
 the signature value of the JSON content above would be:
 
 ```
-o4lfcsHY5M2PQla5nXLcoC8hEbRodZHyCyyq7ca6/v+/PWec6nj7FWgzGdQ9/bhcqKR9FAPp/5+ncPXmE2Z2CA==
+qMt05czF5xKG+HwLrlqp+ja+8qtXDMINfY/eWKFIXYy0eqIj8S32OY0cYQHZqfZbTpA4v9J6vq+FaG5oSLvACg==
 ```
 
 The following document is equivalent to the JSON-LD document above even
@@ -92,17 +88,13 @@ embedded blocks) are in different order but their values are equal:
 
 ```json
 {
-  "issuanceDate": "2010-01-01T19:23:24Z",
-  "id": "https://example.com/credentials/1872",
-  "credentialSubject": {
-    "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
-    "alumniOf": "Example University"
-  },
-  "type": ["VerifiableCredential", "AlumniCredential"],
+  "image": "https://manu.sporny.org/images/manu.png",
+  "name": "Manu Sporny",
   "@context": [
-    "https://www.w3.org/2018/credentials/v1",
-    "https://www.w3.org/2018/credentials/examples/v1"
-  ]
+    "http://schema.org/",
+    "https://w3id.org/security/v2"
+  ],
+  "homepage": "https://manu.sporny.org/"
 }
 ```
 
@@ -112,20 +104,16 @@ signature value is appended to the document with additional metadata:
 ```json
 {
   "@context":[
-    "https://www.w3.org/2018/credentials/v1",
-    "https://www.w3.org/2018/credentials/examples/v1"],
-  "id":"https://example.com/credentials/1872",
-  "type":["VerifiableCredential","AlumniCredential"],
-  "issuanceDate":"2010-01-01T19:23:24Z",
-  "credentialSubject":{
-    "id":"did:example:ebfeb1f712ebc6f1c276e12ec21",
-    "alumniOf":"Example University"
-  },
+    "http://schema.org/","https://w3id.org/security/v2"
+  ],
+  "name":"Manu Sporny",
+  "homepage":"https://manu.sporny.org/",
+  "image":"https://manu.sporny.org/images/manu.png",
   "signature":{
     "type":"Ed25519Signature2018",
     "creator":"did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk#authn-key-1",
     "created":"2018-03-15T00:00:00Z",
-    "signatureValue":"o4lfcsHY5M2PQla5nXLcoC8hEbRodZHyCyyq7ca6/v+/PWec6nj7FWgzGdQ9/bhcqKR9FAPp/5+ncPXmE2Z2CA=="
+    "signatureValue":"qMt05czF5xKG+HwLrlqp+ja+8qtXDMINfY/eWKFIXYy0eqIj8S32OY0cYQHZqfZbTpA4v9J6vq+FaG5oSLvACg=="
   }
 }
 ```
@@ -160,49 +148,25 @@ and verifying including:
 * [rdf-normalize](https://github.com/ruby-rdf/rdf-normalize)
 * [ed25519](https://github.com/crypto-rb/ed25519)
 
-NOTE: additional keys that are NOT in the context vocabularies will
-NOT be part of the normalization process.  Thus, the following JSON-LD
-document is equalivalent to the blocks shown above:
+NOTE: additional keys can be caught in generic schema.org and will
+still be part of the normalization process.  Thus, the following
+JSON-LD document is equalivalent to the blocks shown above:
 
 ```json
 {
   "@context": [
-    "https://www.w3.org/2018/credentials/v1",
-    "https://www.w3.org/2018/credentials/examples/v1"
+    "http://schema.org/",
+    "https://w3id.org/security/v2"
   ],
-  "id": "https://example.com/credentials/1872",
-  "type": ["VerifiableCredential", "AlumniCredential"],
-  "issuanceDate": "2010-01-01T19:23:24Z",
-  "foo" : "bar",
-  "credentialSubject": {
-    "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
-    "alumniOf": "Example University"
-  }
+  "name": "Manu Sporny",
+  "foo": "bar",
+  "homepage": "https://manu.sporny.org/",
+  "image": "https://manu.sporny.org/images/manu.png"
 }
 ```
 
-The key "foo" is not found in either the credentials or security
-vocabularies (in the @context) and therefore *not* included in the
-normalized content.  But the following document is not equivalent (the
-key "validUntil" *is* part of both the credentials and security
-vocabularies - but it just has to be in one of them):
-
-```json
-{
-  "@context": [
-    "https://www.w3.org/2018/credentials/v1",
-    "https://www.w3.org/2018/credentials/examples/v1"
-  ],
-  "id": "https://example.com/credentials/1872",
-  "type": ["VerifiableCredential", "AlumniCredential"],
-  "issuanceDate": "2010-01-01T19:23:24Z",
-  "validUntil" : "2030-01-01T19:23:24Z",
-  "credentialSubject": {
-    "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
-    "alumniOf": "Example University"
-  }
-}
-```
+The key "foo" will be put in the scheme.org context and included in
+the normalized content.
 
 Tests
 -----

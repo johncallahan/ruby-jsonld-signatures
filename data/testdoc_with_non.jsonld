@@ -1,6 +1,6 @@
 {
   "@context": [
-    { "@version": 1.1 },
+    "http://schema.org/",
     "https://w3id.org/security/v2"
   ],
   "name": "Manu Sporny",
