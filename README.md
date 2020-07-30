@@ -33,6 +33,18 @@ Clone this repo, bundle and run the rspec tests:
 % rspec
 ```
 
+You can experiment with the gem on a command line:
+
+```shell
+% irb -I lib -r 'json/ld/signature' -r 'ed25519'
+> signer = JSON::LD::SIGNATURE::Ed25519Signer.new
+> signer.pub = Ed25519::VerifyKey.new ["ff1a646cc8b69fcb522aa1ed162bc2816878252a634384ce46f7507bfc92f68f"].pack('H*')
+> signer.priv = Ed25519::SigningKey.new ["7f702a609f842057be24b5297e451662876f03b047d660362cd123f71d2a3b63"].pack('H*')
+> file = File.read('data/testdoc.jsonld')
+> signed = signer.sign file, { 'creator' => 'did:v1:test:nym:JApJf12r82Pe6PBJ3gJAAwo8F7uDnae6B4ab9EFQ7XXk#authn-key-1'}
+> CTL-D
+```
+
 You can bump the VERSION, update the ruby-jsonld-signatures.gemspec
 file, commit changes, and then
 

@@ -1,13 +1,9 @@
 {
-  "issuanceDate": "2010-01-01T19:23:24Z",
-  "id": "https://example.com/credentials/1872",
-  "credentialSubject": {
-    "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
-    "alumniOf": "Example University"
-  },
-  "type": ["VerifiableCredential", "AlumniCredential"],
+  "image": "https://manu.sporny.org/images/manu.png",
+  "name": "Manu Sporny",
   "@context": [
-    "https://www.w3.org/2018/credentials/v1",
-    "https://www.w3.org/2018/credentials/examples/v1"
-  ]
+    { "@version": 1.1 },
+    "https://w3id.org/security/v2"
+  ],
+  "homepage": "https://manu.sporny.org/"
 }
